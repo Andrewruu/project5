@@ -25,6 +25,17 @@ class NovelsController < ApplicationController
         render json: { errors: novel.errors.full_messages }, status: :unprocessable_entity
       end
     end
+
+    def destroy
+      novel = @current_user.novels.find_by(id: params[:id])
+      
+      if novel.nil?
+        render json: {error: "Novel not found!"}, status: :not_found
+      else
+        novel.destroy
+        render json: {message: 'Novel deleted successfully.'},status: :ok
+      end
+    end
     
       private
     

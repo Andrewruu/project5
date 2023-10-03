@@ -2,13 +2,11 @@ import {
     ADD_NOVEL_REQUEST,
     ADD_NOVEL_SUCCESS,
     ADD_NOVEL_FAILURE,
-    ADD_NOVEL_TO_USER,
+    DELETE_NOVEL_FAILURE,
+    DELETE_NOVEL_REQUEST,
+    DELETE_NOVEL_SUCCESS,
+
   } from '../actionTypes';
-  
-  export const addNovelToUser = (updatedNovelsData) => ({
-    type: ADD_NOVEL_TO_USER,
-    payload: updatedNovelsData,
-  });
 
   export const addNovelRequest = () => ({
     type: ADD_NOVEL_REQUEST,
@@ -24,7 +22,7 @@ import {
     payload: { error }, 
   });
   
-  export const addNovel = (novelData) => {
+  export const addNovel = (novelData, nav) => {
     return async (dispatch) => {
       dispatch(addNovelRequest());
   
@@ -39,9 +37,9 @@ import {
   
         if (response.ok) {
           const novel = await response.json();
+
           dispatch(addNovelSuccess(novel));
-          dispatch(addNovelToUser(novel))
-          console.log(novel)
+          nav("/my-novels");
         } else {
           const error = await response.json();
           dispatch(addNovelFailure(error));
@@ -51,4 +49,35 @@ import {
       }
     };
   };
+
+export const deleteNovelRequest = () => ({
+  type: DELETE_NOVEL_REQUEST,
+});
+
+export const deleteNovelSuccess = (novelId) => ({
+  type: DELETE_NOVEL_SUCCESS,
+  payload: novelId,
+});
+
+export const deleteNovelFailure = (error) => ({
+  type: DELETE_NOVEL_FAILURE,
+  payload: { error },
+});
+
+export const deleteNovel = (novelId, nav) => {
+  return async (dispatch) => {
+    dispatch(deleteNovelRequest());
+
+    try {
+      await fetch(`/novels/${novelId}`, {
+        method: 'DELETE',
+      });
+      dispatch(deleteNovelSuccess(novelId));
+      nav("/my-novels");
+    } catch (error) {
+      dispatch(deleteNovelFailure(error.message));
+    }
+  };
+};
+
   

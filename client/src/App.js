@@ -6,6 +6,7 @@ import { autoLogin } from './actions/authActions';
 import NavBar from './components/NavBar';
 import Novels from './pages/Novels';
 import AddNovelForm from './components/AddNovelForm';
+import NovelDetails from './components/NovelDetails';
 
 function App() {
   // Use useSelector to get the user state from Redux store
@@ -32,6 +33,9 @@ function App() {
         <Route
           path='/add-novel'
           element={<AddNovelForm/>}/>
+        <Route
+          path='/novel/:id'
+          element={<NovelDetails/>}/>
       </Routes>
       <header className="App-header">
         <p>Welcome, {user.display_name}!</p>

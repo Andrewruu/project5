@@ -89,8 +89,8 @@ function AddNovelForm({ addNovel, errors }) {
     function handleSubmit(e) {
         e.preventDefault();
     
-        addNovel(novelData)
-        nav("/my-novels")
+        addNovel(novelData, nav)
+        
     }
     
 
@@ -189,7 +189,7 @@ function AddNovelForm({ addNovel, errors }) {
 }
 
 const mapStateToProps = (state) => ({
-  errors: state.novels.error ? state.novels.error.errors : [],
+  errors: state.auth.error ? state.auth.error.errors : [],
 });
 
 const mapDispatchToProps = {

@@ -10,7 +10,13 @@ import {
     LOGOUT_FAILURE,
     SET_USER,
     CLEAR_USER,
-    ADD_NOVEL_TO_USER,
+    ADD_NOVEL_TO_USER,  
+    ADD_NOVEL_REQUEST,
+    ADD_NOVEL_SUCCESS,
+    ADD_NOVEL_FAILURE,
+    DELETE_NOVEL_SUCCESS,
+    DELETE_NOVEL_FAILURE,
+    DELETE_NOVEL_REQUEST,
 } from '../actionTypes';
 
 const initialState = {
@@ -68,14 +74,60 @@ const authReducer = (state = initialState, action) => {
                 user: null,
             };
 
-        case ADD_NOVEL_TO_USER: 
+
+        case ADD_NOVEL_REQUEST:
+        return {
+            ...state,
+            loading: true,
+            error: null,
+        };
+
+        case ADD_NOVEL_SUCCESS:
             return {
                 ...state,
                 user: {
-                    ...state.user,
-                    novels: [...state.user.novels, action.payload], 
+                ...state.user,
+                novels: [...state.user.novels, action.payload],
                 },
+                loading: false,
+                error: null,
             };
+
+        case ADD_NOVEL_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error,
+            };
+
+        case DELETE_NOVEL_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: null,
+            };
+
+        case DELETE_NOVEL_SUCCESS:
+            const updatedNovels = state.user.novels.filter(
+                (novel) => novel.id !== action.payload
+            );
+            return {
+                ...state,
+                user: {
+                ...state.user,
+                novels: updatedNovels,
+                },
+                loading: false,
+                error: null,
+            };
+
+        case DELETE_NOVEL_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error,
+            };
+
 
         default:
             return state;

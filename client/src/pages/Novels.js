@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import NovelCard from "../components/NovelCard";
 import { Link } from "react-router-dom";
+
 function Novels(){
     const user = useSelector((state) => state.auth.user);
 
-    console.log(user.novels)
     const novelList = (user.novels.length >0? (
         <div>
             {

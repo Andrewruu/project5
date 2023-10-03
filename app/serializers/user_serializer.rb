@@ -6,6 +6,7 @@ class UserSerializer < ActiveModel::Serializer
       id: novel.id,
       image: novel.image,
       name: novel.name,
+      description: novel.description,
       publisher_id: novel.publisher_id,
       translator_id: novel.translator_id,
       user_id: novel.user_id,
