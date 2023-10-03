@@ -10,7 +10,8 @@ import {
     LOGOUT_FAILURE,
     SET_USER,
     CLEAR_USER,
-} from '../actions/actionTypes';
+    ADD_NOVEL_TO_USER,
+} from '../actionTypes';
 
 const initialState = {
     user: null,
@@ -65,6 +66,15 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: null,
+            };
+
+        case ADD_NOVEL_TO_USER: 
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    novels: [...state.user.novels, action.payload], 
+                },
             };
 
         default:

@@ -3,7 +3,7 @@ class Novel < ApplicationRecord
     belongs_to :publisher
     belongs_to :translator
 
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
     validates :image, format: {with: /\.(png|jpg|jpeg)\Z/i}
     validates :description, presence: true, length: {minimum: 15, maximum: 5000}
     

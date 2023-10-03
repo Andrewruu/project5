@@ -10,7 +10,7 @@ import {
     LOGOUT_FAILURE,
     SET_USER,
     CLEAR_USER,
-  } from './actionTypes';
+  } from '../actionTypes';
   
 // Action creators for login
 export const loginRequest = () => ({
@@ -82,9 +82,11 @@ export const loginRequest = () => ({
   
         if (response.ok) {
           const user = await response.json();
+          console.log(user)
           dispatch(loginSuccess(user));
         } else {
           const error = await response.json();
+          console.log(error)
           dispatch(loginFailure(error));
         }
       } catch (error) {
@@ -119,6 +121,45 @@ export const loginRequest = () => ({
       }
     };
   };
-  
-  // Rest of your action creators for logout, set user, and clear user remain the same
+
+
+// Thunk action creator for logout
+export const logout = () => {
+  return async (dispatch) => {
+    dispatch(logoutRequest());
+
+    try {
+      const response = await fetch('/logout', { method: 'DELETE' });
+
+      if (response.ok) {
+        dispatch(logoutSuccess());
+        dispatch(clearUser());
+      } else {
+        const error = await response.json();
+        dispatch(logoutFailure(error));
+      }
+    } catch (error) {
+      dispatch(logoutFailure(error.message));
+    }
+  };
+};
+
+
+export const autoLogin = () => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch('/me');
+
+      if (response.ok) {
+        const user = await response.json();
+        // Dispatch an action to set the user in the Redux store
+        dispatch(setUser(user));
+      }
+    } catch (error) {
+      // Handle any errors here if needed
+      console.error('Auto-login error:', error);
+    }
+  };
+};
+
   

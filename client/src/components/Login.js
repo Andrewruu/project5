@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { loginSuccess } from '../actions/authActions'; // Import your auth actions
-//import './Login.css'; // Add your login styles
+import { login } from '../actions/authActions';
+//import './Login.css';
 
-function Login({ onLogin }) {
+function Login({ onLogin, errors }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState('');
 
   function handleEmailChange(e) {
     setEmail(e.target.value.toLowerCase());
@@ -18,24 +17,8 @@ function Login({ onLogin }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    // Send a POST request to your server for login
-    fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((response) => response.json())
-      .then((user) => {
-        // Dispatch the loginSuccess action with the user data
-        onLogin(user);
-        // redirect to home after successful login
-      })
-      .catch((error) => {
-        setErrors('Login failed. Please check your credentials.');
-      });
+    // Dispatch the login action with email and password
+    onLogin(email, password);
   }
 
   return (
@@ -55,15 +38,28 @@ function Login({ onLogin }) {
           placeholder="Password"
           value={password}
         />
-        {errors && <p className="login-error">{errors}</p>}
+        {errors && errors.length > 0 && (
+          <div className="login-errors">
+            {errors.map((error, index) => (
+              <p key={index} className="login-error">
+                {error}
+              </p>
+            ))}
+          </div>
+        )}
         <button type="submit">Login</button>
       </form>
     </div>
   );
 }
 
+const mapStateToProps = (state) => ({
+  errors: state.auth.error ? state.auth.error.errors : [], 
+});
+
+
 const mapDispatchToProps = {
-  onLogin: loginSuccess,
+  onLogin: login,
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

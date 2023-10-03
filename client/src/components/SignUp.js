@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { signupSuccess } from '../actions/authActions'; // Import your auth actions
-//import './Signup.css'; // Add your signup styles
+import { signup } from '../actions/authActions';
 
-function Signup({ onSignup }) {
+//import './Signup.css'; 
+
+function SignUp({ onSignup, errors }) {
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState([]);
 
   function handleDisplayNameChange(e) {
     setDisplayName(e.target.value.toLowerCase());
@@ -24,23 +24,8 @@ function Signup({ onSignup }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Send a POST request to your server for signup
-    fetch('/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ displayName, email, password }),
-    })
-      .then((response) => response.json())
-      .then((user) => {
-        // Dispatch the signupSuccess action with the user data
-        onSignup(user);
-        // redirect to home after successful signup
-      })
-      .catch((error) => {
-        setErrors(['Signup failed. Please check your information.']); // You can handle multiple error messages if needed.
-      });
+    // Dispatch the signup action with displayName, email, and password
+    onSignup(displayName, email, password);
   }
 
   return (
@@ -65,7 +50,7 @@ function Signup({ onSignup }) {
           placeholder="Password"
           value={password}
         />
-        {errors.length > 0 && (
+        {errors && errors.length > 0 && (
           <div className="signup-errors">
             {errors.map((error, index) => (
               <p key={index} className="signup-error">
@@ -80,8 +65,12 @@ function Signup({ onSignup }) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  errors: state.auth.error,
+});
+
 const mapDispatchToProps = {
-  onSignup: signupSuccess,
+  onSignup: signup,
 };
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

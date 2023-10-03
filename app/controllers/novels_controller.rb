@@ -6,14 +6,25 @@ class NovelsController < ApplicationController
     end
     
     def create
-        @novel = Novel.new(novel_params)
+      novel = @current_user.novels.new(novel_params)
     
-        if @novel.save
-          render json: @novel, status: :created
-        else
-          render json: @novel.errors, status: :unprocessable_entity
-        end
+      publisher_name = params[:novel][:publisher_attributes][:name]
+      publisher_website = params[:novel][:publisher_attributes][:website]
+      translator_name = params[:novel][:translator_attributes][:name]
+      translator_website = params[:novel][:translator_attributes][:website]
+    
+      publisher = Publisher.find_or_create_by(name: publisher_name, website: publisher_website)
+      translator = Translator.find_or_create_by(name: translator_name, website: translator_website)
+    
+      novel.publisher_id = publisher.id
+      novel.translator_id = translator.id
+    
+      if novel.save
+        render json: novel, status: :created
+      else
+        render json: { errors: novel.errors.full_messages }, status: :unprocessable_entity
       end
+    end
     
       private
     
@@ -22,6 +33,8 @@ class NovelsController < ApplicationController
           :name,
           :description,
           :image,
+          :publisher_id,
+          :translator_id,
           publisher_attributes: [:name, :website],
           translator_attributes: [:name, :website]
         )
