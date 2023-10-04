@@ -5,27 +5,29 @@ import { signup } from '../actions/authActions';
 //import './Signup.css'; 
 
 function SignUp({ onSignup, errors }) {
-  const [displayName, setDisplayName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
+  const [user, setUser] = useState({
+    display_name: '',
+    email: '',
+    password: '',
+  });
 
   function handleDisplayNameChange(e) {
-    setDisplayName(e.target.value.toLowerCase());
+    setUser({ ...user, display_name: e.target.value.toLowerCase() });
   }
 
   function handleEmailChange(e) {
-    setEmail(e.target.value.toLowerCase());
+    setUser({ ...user, email: e.target.value.toLowerCase() });
   }
 
   function handlePasswordChange(e) {
-    setPassword(e.target.value);
+    setUser({ ...user, password: e.target.value });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-
     // Dispatch the signup action with displayName, email, and password
-    onSignup(displayName, email, password);
+    onSignup(user);
   }
 
   return (
@@ -36,19 +38,20 @@ function SignUp({ onSignup, errors }) {
           type="text"
           onChange={handleDisplayNameChange}
           placeholder="Display Name"
-          value={displayName}
+          value={user.displayName}
         />
         <input
           type="text"
           onChange={handleEmailChange}
           placeholder="Email"
-          value={email}
+          value={user.email}
         />
         <input
+          name="user[password]"
           type="password"
           onChange={handlePasswordChange}
           placeholder="Password"
-          value={password}
+          value={user.password}
         />
         {errors && errors.length > 0 && (
           <div className="signup-errors">
@@ -66,7 +69,7 @@ function SignUp({ onSignup, errors }) {
 }
 
 const mapStateToProps = (state) => ({
-  errors: state.auth.error,
+  errors: state.auth.error ? state.auth.error.errors : [], 
 });
 
 const mapDispatchToProps = {

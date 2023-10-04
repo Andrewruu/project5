@@ -1,16 +1,18 @@
 class UsersController < ApplicationController
-    skip_before_action :authorize, only: [:create] 
+    skip_before_action :authorize, only: :create
     
     # def index
     #   render json: User.all
     # end
     
     def create
-
-        user = User.create!(user_params)
-        session[:user_id] = user.id
-        render json: user, status: :created
-
+        user = User.create(user_params)
+        if user.valid?
+          session[:user_id] = user.id
+          render json: user, status: :created
+        else
+          render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     def show
@@ -23,7 +25,7 @@ class UsersController < ApplicationController
         user = User.find(params[:id])
         if user.nil?
           render json: {error: "User Not Found"}, status: :not_found          
-        elsif user.update(user_params_update)
+        elsif user.update(user_params)
           render json: user, status: :ok
         else
           render json: { errors: user.errors.full_messages}, status: :unprocessable_entity
@@ -45,11 +47,11 @@ class UsersController < ApplicationController
 
     private
 
-    def user_params
-        params.permit(:display_name, :email, :password)
-    end
+    # def user_params
+    #     params.permit(:display_name, :email, :password)
+    # end
 
-    def user_params_update
+    def user_params
         params.require(:user).permit(:display_name, :email, :password)
     end
 

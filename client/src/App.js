@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {Route, Routes} from "react-router-dom"
+import {Route, Routes, useLocation } from "react-router-dom"
 import Access from './pages/Access';
-import { autoLogin } from './actions/authActions';
+import { autoLogin, clearErrors  } from './actions/authActions';
 import NavBar from './components/NavBar';
 import Novels from './pages/Novels';
 import AddNovelForm from './components/AddNovelForm';
@@ -11,12 +11,18 @@ import NovelDetails from './components/NovelDetails';
 function App() {
   // Use useSelector to get the user state from Redux store
   const user = useSelector((state) => state.auth.user);
+
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(autoLogin());
   }, [dispatch]);
 
+  useEffect(() => {
+    // Clear errors when the route changes (component unmounts)
+      dispatch(clearErrors());
+  }, [location.pathname, dispatch]);
 
 // checking user/sessions exisits
   if (!user){

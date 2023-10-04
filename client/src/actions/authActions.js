@@ -10,6 +10,7 @@ import {
     LOGOUT_FAILURE,
     SET_USER,
     CLEAR_USER,
+    CLEAR_ERRORS
   } from '../actionTypes';
   
 // Action creators for login
@@ -82,11 +83,9 @@ export const loginRequest = () => ({
   
         if (response.ok) {
           const user = await response.json();
-          console.log(user)
           dispatch(loginSuccess(user));
         } else {
           const error = await response.json();
-          console.log(error)
           dispatch(loginFailure(error));
         }
       } catch (error) {
@@ -96,7 +95,8 @@ export const loginRequest = () => ({
   };
   
   // Thunk action creator for signup
-  export const signup = (displayName, email, password) => {
+  export const signup = (user) => {
+    console.log({ user});
     return async (dispatch) => {
       dispatch(signupRequest());
   
@@ -106,7 +106,7 @@ export const loginRequest = () => ({
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ displayName, email, password }),
+          body: JSON.stringify({user}),
         });
   
         if (response.ok) {
@@ -162,4 +162,7 @@ export const autoLogin = () => {
   };
 };
 
+export const clearErrors = () => ({
+  type: CLEAR_ERRORS,
+});
   

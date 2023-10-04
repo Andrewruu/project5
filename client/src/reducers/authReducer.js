@@ -9,14 +9,14 @@ import {
     LOGOUT_SUCCESS,
     LOGOUT_FAILURE,
     SET_USER,
-    CLEAR_USER,
-    ADD_NOVEL_TO_USER,  
+    CLEAR_USER, 
     ADD_NOVEL_REQUEST,
     ADD_NOVEL_SUCCESS,
     ADD_NOVEL_FAILURE,
     DELETE_NOVEL_SUCCESS,
     DELETE_NOVEL_FAILURE,
     DELETE_NOVEL_REQUEST,
+    CLEAR_ERRORS,
 } from '../actionTypes';
 
 const initialState = {
@@ -128,6 +128,11 @@ const authReducer = (state = initialState, action) => {
                 error: action.payload.error,
             };
 
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null, 
+            };
 
         default:
             return state;
