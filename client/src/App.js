@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import Novels from './pages/Novels';
 import AddNovelForm from './components/AddNovelForm';
 import NovelDetails from './components/NovelDetails';
+import EditNovelForm from './components/EditNovelForm';
 
 function App() {
   // Use useSelector to get the user state from Redux store
@@ -20,7 +21,7 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    // Clear errors when the route changes (component unmounts)
+    // Clear errors when the route changes
       dispatch(clearErrors());
   }, [location.pathname, dispatch]);
 
@@ -36,6 +37,9 @@ function App() {
         <Route 
           path='/my-novels'
           element={<Novels/>}/>
+        <Route 
+          path='/edit-novel/:id'
+          element={<EditNovelForm/>}/>
         <Route
           path='/add-novel'
           element={<AddNovelForm/>}/>

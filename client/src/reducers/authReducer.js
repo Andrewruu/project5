@@ -16,7 +16,10 @@ import {
     DELETE_NOVEL_SUCCESS,
     DELETE_NOVEL_FAILURE,
     DELETE_NOVEL_REQUEST,
-    CLEAR_ERRORS,
+    CLEAR_ERRORS,  
+    EDIT_NOVEL_REQUEST,
+    EDIT_NOVEL_SUCCESS,
+    EDIT_NOVEL_FAILURE,
 } from '../actionTypes';
 
 const initialState = {
@@ -134,6 +137,32 @@ const authReducer = (state = initialState, action) => {
                 error: null, 
             };
 
+        case EDIT_NOVEL_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: null,
+            };
+    
+            case EDIT_NOVEL_SUCCESS:
+                return {
+                    ...state,
+                    user: {
+                        ...state.user,
+                        novels: state.user.novels.map((novel) =>
+                            novel.id === action.payload.id ? action.payload : novel
+                        ),
+                    },
+                    loading: false,
+                    error: null,
+                };
+            
+        case EDIT_NOVEL_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error,
+            };
         default:
             return state;
     }

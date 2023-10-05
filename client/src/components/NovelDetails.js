@@ -14,7 +14,6 @@ export default function NovelDetails(){
     const novel = novels.find((novel) => parseInt(novel.id) === parseInt(id));
 
 
-    console.log(novel)
     if (!novel) {
         return <div>Novel not found</div>;
       }
@@ -32,6 +31,17 @@ export default function NovelDetails(){
             />
             <p>{novel.description}</p>
             <h2>{novel.name}</h2>
+            <p>{'Translator Name: '+novel.translator.name}</p>
+            <p>
+                {'Translator site: '}
+                <a href={novel.translator.website}>{novel.translator.website}</a>
+            </p>
+            <p>{'Publisher Name: '+novel.publisher.name}</p>
+            <p>
+                {'Publisher site: '}
+                <a href={novel.publisher.website}>{novel.publisher.website}</a>
+            </p>
+            <Link to={`/edit-novel/${novel.id}`}><button >Edit Novel</button></Link>
             <button className={'remove'} onClick={handleDelete}>Delete</button>
 
         </div>
