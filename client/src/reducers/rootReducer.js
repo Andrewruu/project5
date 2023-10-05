@@ -8,8 +8,6 @@ const rootReducer = combineReducers({
     auth: authReducer,
     translators: translatorReducer,
     publishers: publisherReducer,
-
-
 });
 
 export default rootReducer;

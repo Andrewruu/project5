@@ -24,66 +24,81 @@ function AddNovelForm({ addNovel, errors }) {
         publisher_id: '',
         translator_id: '',
         publisher_attributes: {
-        name: '',
-        website: '',
+            id:'',
+            name: '',
+            website: '',
         },
         translator_attributes: {
-        name: '',
-        website: '',
+            id:'',
+            name: '',
+            website: '',
         },
     });
 
     function handleInputChange(event) {
         const { name, value } = event.target;
-
         const updatedNovelData = { ...novelData };
-
-        if (name.includes('.')) {
-        const [nestedField, nestedProperty] = name.split('.');
-
-        updatedNovelData[nestedField] = { ...updatedNovelData[nestedField] };
-
-        updatedNovelData[nestedField][nestedProperty] = value;
-        } else {
-        updatedNovelData[name] = value;
-
-        if (name === 'publisher_id') {
-            // Find the selected publisher using the value
-            const selectedPublisher = publishers.find(
-            (publisher) => publisher.id.toString() === value
-            );
-
-            // Publisher is selected, autofill the corresponding fields
-            if (selectedPublisher) {
-            updatedNovelData['publisher_attributes']['name'] =
-                selectedPublisher.name;
-            updatedNovelData['publisher_attributes']['website'] =
-                selectedPublisher.website;
-            } else {
-            // If no publisher is selected, reset the fields
-            updatedNovelData['publisher_attributes']['name'] = '';
-            updatedNovelData['publisher_attributes']['website'] = '';
-            }
-        } else if (name === 'translator_id') {
-            // Find the selected translator using the value
-            const selectedTranslator = translators.find(
-            (translator) => translator.id.toString() === value
-            );
-            // Translator is selected, autofill the corresponding fields
-            if (selectedTranslator) {
-            updatedNovelData['translator_attributes']['name'] =
-                selectedTranslator.name;
-            updatedNovelData['translator_attributes']['website'] =
-                selectedTranslator.website;
-            } else {
-            // If no translator is selected, reset the fields
-            updatedNovelData['translator_attributes']['name'] = '';
-            updatedNovelData['translator_attributes']['website'] = '';
-            }
+        if (name === 'publisher_attributes.name')
+        {
+            updatedNovelData['publisher_attributes']['id'] = '';
+            updatedNovelData['publisher_id'] = ''; 
         }
+        if (name === 'translator_attributes.name')
+        {
+            updatedNovelData['translator_attributes']['id'] = '';
+            updatedNovelData['translator_id'] = ''; 
+        }
+        if (name.includes('.')) {
+          const [nestedField, nestedProperty] = name.split('.');
+      
+          updatedNovelData[nestedField] = { ...updatedNovelData[nestedField] };
+          updatedNovelData[nestedField][nestedProperty] = value;
+        } else {
+          updatedNovelData[name] = value;
+      
+          if (name === 'publisher_id') {
+            // Check if the value is empty (user manually changed publisher name)
+            if (!value) {
+              updatedNovelData['publisher_attributes']['id'] = '';
+              updatedNovelData['publisher_id'] = ''; 
+            }
+      
+            const selectedPublisher = publishers.find(
+              (publisher) => publisher.id.toString() === value
+            );
+      
+            if (selectedPublisher) {
+              updatedNovelData['publisher_attributes']['id'] =
+                selectedPublisher.id;
+              updatedNovelData['publisher_attributes']['name'] =
+                selectedPublisher.name;
+              updatedNovelData['publisher_attributes']['website'] =
+                selectedPublisher.website;
+            }
+          } else if (name === 'translator_id') {
+            // Check if the value is empty (user manually changed translator name)
+            if (!value) {
+              updatedNovelData['translator_attributes']['id'] = '';
+              updatedNovelData['translator_id'] = '';
+            }
+      
+            const selectedTranslator = translators.find(
+              (translator) => translator.id.toString() === value
+            );
+      
+            if (selectedTranslator) {
+              updatedNovelData['translator_attributes']['id'] =
+                selectedTranslator.id;
+              updatedNovelData['translator_attributes']['name'] =
+                selectedTranslator.name;
+              updatedNovelData['translator_attributes']['website'] =
+                selectedTranslator.website;
+            }
+          }
         }
 
         setNovelData(updatedNovelData);
+        console.log(updatedNovelData)
     }
 
     function handleSubmit(e) {
