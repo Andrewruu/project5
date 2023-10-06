@@ -21,8 +21,8 @@ function App() {
 
   const dispatch = useDispatch();
   const location = useLocation();
-
-
+  console.log(import.meta.url);
+  
   useEffect(() => {
     dispatch(autoLogin());
   }, [dispatch]);
