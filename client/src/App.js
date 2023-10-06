@@ -72,9 +72,9 @@ function App() {
           path='/translator/:id'
           element={<TranslatorNovels/>}/>
           
-        <Route 
+        {/* <Route 
           path="*" 
-          element={<NotFound />} />
+          element={<NotFound />} /> */}
 
       </Routes>
       <header className="App-header">
