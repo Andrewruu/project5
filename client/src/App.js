@@ -26,7 +26,7 @@ function App() {
   const currentModuleUrl = new URL(import.meta.url);
 const currentModulePath = decodeURI(currentModuleUrl.pathname);
 
-// The absolute path to App.js
+// The absolute path to App.js 
 const appJsAbsolutePath = '/opt/render/project/src/client/src/App.js';
 
 // Calculate the relative path
