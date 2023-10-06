@@ -22,12 +22,6 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const nav = useNavigate();
-
-  const handleNotFound = () => {
-
-    nav('/not-found');
-  };
 
   useEffect(() => {
     dispatch(autoLogin());
@@ -37,15 +31,6 @@ function App() {
     // Clear errors when the route changes
       dispatch(clearErrors());
   }, [location.pathname, dispatch]);
-
-  useEffect(() => {
-    window.dispatchEvent(new Event('error-404'));
-    window.addEventListener('error-404', handleNotFound);
-  
-    return () => {
-      window.removeEventListener('error-404', handleNotFound);
-    };
-  }, []);
 
  
 
