@@ -2,7 +2,8 @@ class ErrorsController < ApplicationController
   skip_before_action :authorize
 
   def not_found
-    put 'hello world'
+    puts 'hello world'
+    puts `#{Rails.root}`
     render file: '/opt/render/project/src/client/src/App.js', layout: false
   end
 
