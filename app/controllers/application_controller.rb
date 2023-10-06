@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
-
+    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   
     before_action :authorize
@@ -20,5 +20,10 @@ class ApplicationController < ActionController::API
   
     def current_user
       @current_user ||= User.find_by(id: session[:user_id])
+    end
+    private
+
+    def record_not_found
+      redirect_to not_found_path
     end
 end
