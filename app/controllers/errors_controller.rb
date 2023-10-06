@@ -2,7 +2,7 @@ class ErrorsController < ApplicationController
   skip_before_action :authorize
 
   def not_found
-    render file: "#{Rails.root}/client/src/app.js", layout: false
+    render file: "#{Rails.root}/src/client/src/app.js", layout: false
   end
 
   def internal_server_error
