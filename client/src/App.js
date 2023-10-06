@@ -23,6 +23,18 @@ function App() {
   const location = useLocation();
   console.log(import.meta.url);
   
+  const currentModuleUrl = new URL(import.meta.url);
+const currentModulePath = decodeURI(currentModuleUrl.pathname);
+
+// The absolute path to App.js
+const appJsAbsolutePath = '/opt/render/project/src/client/src/App.js';
+
+// Calculate the relative path
+const relativePath = path.relative(currentModulePath, appJsAbsolutePath);
+
+console.log(relativePath);
+
+
   useEffect(() => {
     dispatch(autoLogin());
   }, [dispatch]);
