@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'catch_all/catch_all'
   get 'errors/not_found'
 
   resources :translators, only: [:index]
@@ -12,5 +13,5 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  get '*unmatched_route', to: 'errors#not_found', format: false
+  get '*path', to: 'catch_all#catch_all'
 end
