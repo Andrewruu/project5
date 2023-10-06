@@ -8,6 +8,10 @@ import Novels from './pages/Novels';
 import AddNovelForm from './components/AddNovelForm';
 import NovelDetails from './components/NovelDetails';
 import EditNovelForm from './components/EditNovelForm';
+import Publishers from './pages/Publishers';
+import Translators from './pages/Translators';
+import PublisherNovels from './components/PublisherNovesl';
+import TranslatorNovels from './components/TranslatorNovels';
 
 function App() {
   // Use useSelector to get the user state from Redux store
@@ -16,6 +20,7 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
 
+  
   useEffect(() => {
     dispatch(autoLogin());
   }, [dispatch]);
@@ -46,6 +51,18 @@ function App() {
         <Route
           path='/novel/:id'
           element={<NovelDetails/>}/>
+        <Route
+          path='/publishers'
+          element={<Publishers/>}/>
+        <Route
+          path='/publisher/:id'
+          element={<PublisherNovels/>}/>
+        <Route
+          path='/translators'
+          element={<Translators/>}/>
+        <Route
+          path='/translator/:id'
+          element={<TranslatorNovels/>}/>
       </Routes>
       <header className="App-header">
         <p>Welcome, {user.display_name}!</p>

@@ -23,6 +23,12 @@ function NavBar() {
       <NavLink to={`/my-novels`}>
         My Novels
       </NavLink>
+      <NavLink to={`/publishers`}>
+        My Publishers
+      </NavLink>
+      <NavLink to={`/translators`}>
+        My Translators
+      </NavLink>
       <button onClick={handleLogoutClick}>Logout</button>
     </div>
   );
