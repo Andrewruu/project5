@@ -21,7 +21,6 @@ const Translators = () => {
   return (
     <div>
       <h2>Translators for my novels</h2>
-      <ul>
         {uniqueTranslators.map((translatorId) => {
           // Find the translator object based on the unique ID
           const translator = user.novels.find(
@@ -30,20 +29,19 @@ const Translators = () => {
 
           if (translator) {
             return (
-              <li key={translator.translator.id}>
+              <div key={translator.translator.id}>
                 <Link to={`/translator/${translator.translator.id}`}>
                   {translator.translator.name}
                 </Link>{" "}
                 <a href={translator.translator.website}>
                   {translator.translator.website}
                 </a>
-              </li>
+              </div>
             );
           }
 
           return <p>No Translator</p>
         })}
-      </ul>
     </div>
   );
 };

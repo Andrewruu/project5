@@ -21,7 +21,6 @@ const Publishers = () => {
   return (
     <div>
       <h2>Publishers for my novels</h2>
-      <ul>
         {uniquePublishers.map((publisherId) => {
           // Find the publisher object based on the unique ID
           const publisher = user.novels.find(
@@ -30,20 +29,19 @@ const Publishers = () => {
 
           if (publisher) {
             return (
-              <li key={publisher.publisher.id}>
+              <div key={publisher.publisher.id}>
                 <Link to={`/publisher/${publisher.publisher.id}`}>
                   {publisher.publisher.name}
                 </Link>{" "}
                 <a href={publisher.publisher.website}>
                   {publisher.publisher.website}
                 </a>
-              </li>
+              </div>
             );
           }
 
           return <p>No Publisher</p>
         })}
-      </ul>
     </div>
   );
 };

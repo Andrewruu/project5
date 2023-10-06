@@ -22,13 +22,13 @@ const TranslatorNovels = () => {
   return (
     <div>
       <h2>Novels by {translator.name}</h2>
-      <ul>
+
         {translatorNovels.map((novel) => (
-          <li key={novel.id}>
+          <div key={novel.id}>
             <NovelCard novel={novel} />
-          </li>
+          </div>
         ))}
-      </ul>
+
       <Link to="/translators">Back to Translators</Link>
     </div>
   );
