@@ -13,6 +13,8 @@ export default function NovelDetails(){
     
     const novel = novels.find((novel) => parseInt(novel.id) === parseInt(id));
 
+    console.log(novel)
+    console.log(id)
 
     if (!novel) {
         return <div>Novel not found</div>;
