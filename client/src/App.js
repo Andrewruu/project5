@@ -10,7 +10,7 @@ import NovelDetails from './components/NovelDetails';
 import EditNovelForm from './components/EditNovelForm';
 import Publishers from './pages/Publishers';
 import Translators from './pages/Translators';
-import PublisherNovels from './components/PublisherNovesl';
+import PublisherNovels from './components/PublisherNovels';
 import TranslatorNovels from './components/TranslatorNovels';
 
 function App() {
