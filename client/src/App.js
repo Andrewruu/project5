@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {Route, Routes, useLocation } from "react-router-dom"
+import {Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import Access from './pages/Access';
 import { autoLogin, clearErrors  } from './actions/authActions';
 import NavBar from './components/NavBar';
@@ -13,6 +13,7 @@ import Translators from './pages/Translators';
 import PublisherNovels from './components/PublisherNovels';
 import TranslatorNovels from './components/TranslatorNovels';
 import NotFound from './components/NotFound';
+import Home from './pages/Home';
 
 function App() {
   // Use useSelector to get the user state from Redux store
@@ -21,7 +22,13 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  
+  const nav = useNavigate();
+
+  const handleNotFound = () => {
+
+    nav('/not-found');
+  };
+
   useEffect(() => {
     dispatch(autoLogin());
   }, [dispatch]);
@@ -30,6 +37,15 @@ function App() {
     // Clear errors when the route changes
       dispatch(clearErrors());
   }, [location.pathname, dispatch]);
+
+  useEffect(() => {
+    window.addEventListener('error-404', handleNotFound);
+  
+    return () => {
+      window.removeEventListener('error-404', handleNotFound);
+    };
+  }, []);
+  
 
 // checking user/sessions exisits
   if (!user){
@@ -40,6 +56,9 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
+      <Route 
+          path='/'
+          element={<Home/>}/>
         <Route 
           path='/my-novels'
           element={<Novels/>}/>
@@ -71,7 +90,6 @@ function App() {
 
       </Routes>
       <header className="App-header">
-        <p>Welcome, {user.display_name}!</p>
       </header>
     </div>
   );
