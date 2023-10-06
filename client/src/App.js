@@ -12,6 +12,7 @@ import Publishers from './pages/Publishers';
 import Translators from './pages/Translators';
 import PublisherNovels from './components/PublisherNovels';
 import TranslatorNovels from './components/TranslatorNovels';
+import NotFound from './components/NotFound';
 
 function App() {
   // Use useSelector to get the user state from Redux store
@@ -63,6 +64,11 @@ function App() {
         <Route
           path='/translator/:id'
           element={<TranslatorNovels/>}/>
+          
+        <Route 
+          path="*" 
+          element={<NotFound />} />
+
       </Routes>
       <header className="App-header">
         <p>Welcome, {user.display_name}!</p>
