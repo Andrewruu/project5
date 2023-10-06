@@ -20,9 +20,7 @@ function App() {
   const user = useSelector((state) => state.auth.user);
 
   const dispatch = useDispatch();
-  const location = useLocation();
-  console.log(import.meta.url);
-  
+  const location = useLocation();  
   
 
   useEffect(() => {

@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  get '*path', to: 'catch_all#catch_all'
+  get '*path', to: 'catch_all#catch_all', constraints: ->(req) { !req.xhr? && req.format.html? }
 end
