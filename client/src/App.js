@@ -23,7 +23,7 @@ function App() {
   
   useEffect(() => {
     dispatch(autoLogin());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     // Clear errors when the route changes
