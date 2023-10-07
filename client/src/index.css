@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* my custome CSS for bootstrap  */
+
+.navbar-with-underline {
+  border-bottom: 2px solid rgb(90, 153, 247); 
+}
+
+.custom-blue-button {
+  color: rgb(90, 153, 247); 
+  border-color: rgb(90, 153, 247); 
+}
+
+.custom-blue-button:hover {
+  border-color: rgb(90, 153, 247); 
+  background-color: rgb(90, 153, 247); 
+  color: white; 
+}

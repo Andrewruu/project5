@@ -24,7 +24,7 @@ import {
       type: ADD_NOVEL_FAILURE,
       payload: { error }, 
     });
-    
+    // Actopm fpr adding novel
     export const addNovel = (novelData, nav) => {
       return async (dispatch) => {
         dispatch(addNovelRequest());
@@ -66,6 +66,7 @@ import {
     payload: { error },
   });
 
+  //Action for deleting Novel
   export const deleteNovel = (novelId, nav) => {
     return async (dispatch) => {
       dispatch(deleteNovelRequest());
@@ -95,7 +96,7 @@ import {
     type: EDIT_NOVEL_FAILURE,
     payload: { error },
   });
-
+  //Action for edit novel
   export const editNovel = (novelId, novelData, nav) => {
     return async (dispatch) => {
       dispatch(editNovelRequest());
