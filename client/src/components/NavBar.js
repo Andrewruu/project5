@@ -29,6 +29,9 @@ function NavBar() {
       <NavLink to={`/translators`}>
         My Translators
       </NavLink>
+      <NavLink to={`/translator`}>
+        does not exisit
+      </NavLink>
       <button onClick={handleLogoutClick}>Logout</button>
     </div>
   );

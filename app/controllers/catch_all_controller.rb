@@ -1,5 +1,4 @@
-class CatchAllController < ApplicationController
-  skip_before_action :authorize
+class CatchAllController < ActionController::Base
 
   def catch_all  
     render file: 'public/index.html'
