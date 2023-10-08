@@ -23,11 +23,11 @@ const TranslatorNovels = () => {
     <div>
       <h2>Novels by {translator.name}</h2>
 
-        {translatorNovels.map((novel) => (
-          <div key={novel.id}>
-            <NovelCard novel={novel} />
-          </div>
-        ))}
+      <div className="row">
+          {translatorNovels.map((novel) => (
+              <NovelCard novel={novel} />
+          ))}
+        </div>
 
       <Link to="/translators">Back to Translators</Link>
     </div>

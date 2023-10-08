@@ -14,16 +14,14 @@ code {
 
 /* my custome CSS for bootstrap  */
 
-/* maybe will have this line not sure yet 
-.navbar-with-underline {
-  border-bottom: 2px solid rgb(90, 153, 247); 
-} */
-
 body {
   background-color: #444654; 
   color: white;
 }
 
+.custom-card-size{
+  width: 18rem;
+}
 .custom-blue-button {
   color: rgb(90, 153, 247); 
   border-color: rgb(90, 153, 247); 

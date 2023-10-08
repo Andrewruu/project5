@@ -22,12 +22,11 @@ const PublisherNovels = () => {
   return (
     <div>
       <h2>Novels by {publisher.name}</h2>
-
-        {publisherNovels.map((novel) => (
-          <div key={novel.id}>
-            <NovelCard novel={novel} />
-          </div>
-        ))}
+        <div className="row">
+          {publisherNovels.map((novel) => (
+              <NovelCard novel={novel} />
+          ))}
+        </div>
 
       <Link to="/publishers">Back to Publishers</Link>
     </div>

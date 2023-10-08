@@ -7,11 +7,15 @@ function Novels(){
 
     const novelList = (user.novels.length >0? (
         <div>
+            <div className="row">
             {
                 user.novels.map((novel)=>{
-                    return <NovelCard key={novel.id} novel={novel}/>
+                    return (
+                        <NovelCard key={novel.id} novel={novel}/>
+                    )
                 })
             }
+            </div>
         </div>
     ): <h1>No Novel</h1>)
 
