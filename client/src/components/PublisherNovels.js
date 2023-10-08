@@ -21,14 +21,18 @@ const PublisherNovels = () => {
 
   return (
     <div>
-      <h2>Novels by {publisher.name}</h2>
-        <div className="row">
-          {publisherNovels.map((novel) => (
-              <NovelCard novel={novel} />
-          ))}
+      <div className="center-container">
+        <h2>Novels by {publisher.name}</h2>
+        <div class="container-fluid">
+            <div className="row custom-card-row">
+              {publisherNovels.map((novel) => (
+                  <NovelCard novel={novel} />
+              ))}
+            </div>
         </div>
-
+      
       <Link to="/publishers">Back to Publishers</Link>
+      </div>
     </div>
   );
 };

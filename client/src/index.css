@@ -12,16 +12,73 @@ code {
     monospace;
 }
 
-/* my custome CSS for bootstrap  */
+/* my custome CSS */
 
 body {
   background-color: #444654; 
   color: white;
 }
 
+/* Center the table content */
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.custom-table{
+  background-color: #30323a;
+  width: 50%; 
+}
+.custom-table th {
+  background-color: #30323a; 
+  color: white; 
+}
+/* container CSS */
+.center-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.center-container p {
+  margin: 10px 0;
+}
+.center-container h2 {
+  margin: 10px 0;
+}
+
+.custom-link{
+  text-decoration: none;
+  color: rgb(90, 153, 247); 
+  
+}
+.custom-link:hover{
+  color: rgb(253, 55, 55);
+}
+
+/* card cust css */
+.custom-card-row{
+  --bs-gutter-x:0;
+}
+.custom-card-col{
+  padding-right: calc(var(--bs-gutter-x) * .6);
+  padding-left: calc(var(--bs-gutter-x) * .6);
+}
 .custom-card-size{
   width: 18rem;
 }
+
+.custom-card-link{
+  text-decoration: none;
+  color: white;
+}
+.custom-card-link:hover{
+  color: rgb(90, 153, 247); 
+}
+
+/* btn cust CSS */
+
 .custom-blue-button {
   color: rgb(90, 153, 247); 
   border-color: rgb(90, 153, 247); 

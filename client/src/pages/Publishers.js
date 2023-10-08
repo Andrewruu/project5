@@ -20,29 +20,52 @@ const Publishers = () => {
   console.log(user.novels)
   return (
     <div>
+    <div className="container-fluid center-container">
       <h2>Publishers for my novels</h2>
-        {uniquePublishers.map((publisherId) => {
-          // Find the publisher object based on the unique ID
-          const publisher = user.novels.find(
-            (novel) => novel.publisher && novel.publisher.id === publisherId
-          );
-
-          if (publisher) {
-            return (
-              <div key={publisher.publisher.id}>
-                <Link to={`/publisher/${publisher.publisher.id}`}>
-                  {publisher.publisher.name}
-                </Link>{" "}
-                <a href={publisher.publisher.website}>
-                  {publisher.publisher.website}
-                </a>
-              </div>
+      <div className="table-container">
+      <table className="table custom-table">
+        <thead>
+          <tr>
+            <th>Publisher Name</th>
+            <th>Website</th>
+          </tr>
+        </thead>
+        <tbody>
+          {uniquePublishers.map((publisherId) => {
+            // Find the publisher object based on the unique ID
+            const publisher = user.novels.find(
+              (novel) => novel.publisher && novel.publisher.id === publisherId
             );
-          }
-
-          return <p>No Publisher</p>
-        })}
+  
+            if (publisher) {
+              return (
+                <tr key={publisher.publisher.id}>
+                  <td>
+                    <Link className="custom-link" to={`/publisher/${publisher.publisher.id}`}>
+                      {publisher.publisher.name}
+                    </Link>
+                  </td>
+                  <td>
+                    <a className="custom-link" href={publisher.publisher.website}>
+                      {publisher.publisher.website}
+                    </a>
+                  </td>
+                </tr>
+              );
+            } else {
+              return (
+                <tr key={publisherId}>
+                  <td colSpan="2">No Publisher</td>
+                </tr>
+              );
+            }
+          })}
+        </tbody>
+      </table>
+      </div>
     </div>
+  </div>
+  
   );
 };
 

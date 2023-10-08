@@ -21,15 +21,19 @@ const TranslatorNovels = () => {
 
   return (
     <div>
-      <h2>Novels by {translator.name}</h2>
+      <div className="center-container">
+        <h2>Novels by {translator.name}</h2>
 
-      <div className="row">
-          {translatorNovels.map((novel) => (
-              <NovelCard novel={novel} />
-          ))}
+        <div class="container-fluid">
+            <div className="row custom-card-row">
+              {translatorNovels.map((novel) => (
+                  <NovelCard novel={novel} />
+              ))}
+            </div>
         </div>
 
-      <Link to="/translators">Back to Translators</Link>
+        <Link to="/translators">Back to Translators</Link>
+      </div>
     </div>
   );
 };

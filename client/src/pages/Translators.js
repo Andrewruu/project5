@@ -19,30 +19,53 @@ const Translators = () => {
   const uniqueTranslators = [...uniqueTranslatorIds];
 
   return (
-    <div>
-      <h2>Translators for my novels</h2>
+<div>
+  <div className="container-fluid center-container">
+    <h2>Translators for my novels</h2>
+    <div className="table-container">
+    <table className="table custom-table">
+      <thead>
+        <tr>
+          <th>Translator Name</th>
+          <th>Website</th>
+        </tr>
+      </thead>
+      <tbody>
         {uniqueTranslators.map((translatorId) => {
           // Find the translator object based on the unique ID
           const translator = user.novels.find(
             (novel) => novel.translator && novel.translator.id === translatorId
           );
 
-          if (translator) {
-            return (
-              <div key={translator.translator.id}>
-                <Link to={`/translator/${translator.translator.id}`}>
-                  {translator.translator.name}
-                </Link>{" "}
-                <a href={translator.translator.website}>
-                  {translator.translator.website}
-                </a>
-              </div>
-            );
-          }
-
-          return <p>No Translator</p>
+          return (
+            <tr key={translatorId}>
+              <td>
+                {translator ? (
+                  <Link className="custom-link" to={`/translator/${translator.translator.id}`}>
+                    {translator.translator.name}
+                  </Link>
+                ) : (
+                  "No Translator"
+                )}
+              </td>
+              <td>
+                {translator ? (
+                  <a className="custom-link" href={translator.translator.website}>
+                    {translator.translator.website}
+                  </a>
+                ) : (
+                  "-"
+                )}
+              </td>
+            </tr>
+          );
         })}
+      </tbody>
+    </table>
     </div>
+  </div>
+</div>
+
   );
 };
 
