@@ -15,7 +15,7 @@ function NavBar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-with-underline">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className='container-fluid'>
         <div className="navbar-brand">NovelShelf</div>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
