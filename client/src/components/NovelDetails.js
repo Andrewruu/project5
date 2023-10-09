@@ -24,27 +24,38 @@ export default function NovelDetails(){
         dispatch(deleteNovel(novel.id,nav));
     };
     return(
-        <div className="card">
-            
-            <img
-            src={novel.image}
-            alt="no image"
-            className="product-avatar"
-            />
-            <p>{novel.description}</p>
+        <div className="container">
+        <div className="card custom-color-description">
             <h2>{novel.name}</h2>
-            <p>{'Translator Name: '+novel.translator.name}</p>
-            <p>
-                {'Translator site: '}
-                <a href={novel.translator.website}>{novel.translator.website}</a>
-            </p>
-            <p>{'Publisher Name: '+novel.publisher.name}</p>
-            <p>
-                {'Publisher site: '}
-                <a href={novel.publisher.website}>{novel.publisher.website}</a>
-            </p>
-            <Link to={`/edit-novel/${novel.id}`}><button >Edit Novel</button></Link>
-            <button className={'remove'} onClick={handleDelete}>Delete</button>
+            <div className="image-container">
+                <img
+                    src={novel.image}
+                    alt="no image"
+                    className="product-avatar custom-card-size"
+                />
+                <div className="text-container">
+                    <h5>Description</h5>
+                    <p>{novel.description}</p>
+                </div>
+            </div>
+
+            <div class="card-body">
+                
+                <p>{'Translator Name: '+novel.translator.name}</p>
+                <p>
+                    {'Translator site: '}
+                    <a href={novel.translator.website}>{novel.translator.website}</a>
+                </p>
+                <p>{'Publisher Name: '+novel.publisher.name}</p>
+                <p>
+                    {'Publisher site: '}
+                    <a href={novel.publisher.website}>{novel.publisher.website}</a>
+                </p>
+                <Link to={`/edit-novel/${novel.id}`}><button className="btn btn-outline-success my-2 my-sm-0 custom-blue-button" >Edit Novel</button></Link>
+                <button className="btn btn-outline-success my-2 my-sm-0 custom-blue-button" onClick={handleDelete}>Delete</button>
+
+            </div>
+        </div>
 
         </div>
     )

@@ -25,7 +25,13 @@ body {
   justify-content: center;
   align-items: center; 
 }
-
+.custom-color-description {
+  background-color: #30323b; 
+  border-color: #30323b; 
+  color: white;
+  margin-top: 10px;
+  padding: 10px;
+}
 .custom-table{
   background-color: #30323a;
   width: 50%; 
@@ -81,6 +87,23 @@ body {
 .custom-card-link:hover{
   color: rgb(90, 153, 247); 
 }
+
+.image-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.image-container img {
+  margin-right: 10px; 
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  align-self: flex-start;
+}
+
 
 /* error message */
 .custom-error-message{

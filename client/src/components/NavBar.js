@@ -45,7 +45,7 @@ function NavBar() {
             </li>
 
           </ul>
-        <button class="btn btn-outline-success my-2 my-sm-0 custom-blue-button" onClick={handleLogoutClick}>Logout</button>
+        <button className="btn btn-outline-success my-2 my-sm-0 custom-blue-button" onClick={handleLogoutClick}>Logout</button>
       </div>
     </nav>
   );
