@@ -41,12 +41,12 @@ export default function NovelDetails(){
 
             <div class="card-body">
                 
-                <p>{'Translator Name: '+novel.translator.name}</p>
+                <p>{'Translator Name: ' + novel.translator.name}</p>
                 <p>
                     {'Translator site: '}
                     <a href={novel.translator.website}>{novel.translator.website}</a>
                 </p>
-                <p>{'Publisher Name: '+novel.publisher.name}</p>
+                <p>{'Publisher Name: ' + novel.publisher.name}</p>
                 <p>
                     {'Publisher site: '}
                     <a href={novel.publisher.website}>{novel.publisher.website}</a>
