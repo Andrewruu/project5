@@ -17,7 +17,7 @@ const Publishers = () => {
 
   // Convert the Set of unique IDs back to an array
   const uniquePublishers = [...uniquePublisherIds];
-  console.log(user.novels)
+ 
   return (
     <div>
     <div className="container-fluid center-container">
@@ -31,27 +31,28 @@ const Publishers = () => {
           </tr>
         </thead>
         <tbody>
-          {uniquePublishers.map((publisherId) => {
-            // Find the publisher object based on the unique ID
-            const publisher = user.novels.find(
-              (novel) => novel.publisher && novel.publisher.id === publisherId
+  {uniquePublishers.length > 0 ? (
+    uniquePublishers.map((publisherId) => {
+      // Find the publisher object based on the unique ID
+      const publisher = user.novels.find(
+        (novel) => novel.publisher && novel.publisher.id === publisherId
+      );
+
+      if (publisher) {
+        return (
+              <tr key={publisher.publisher.id}>
+                <td>
+                  <Link className="custom-link" to={`/publisher/${publisher.publisher.id}`}>
+                    {publisher.publisher.name}
+                  </Link>
+                </td>
+                <td>
+                  <a className="custom-link" href={publisher.publisher.website}>
+                    {publisher.publisher.website}
+                  </a>
+                </td>
+              </tr>
             );
-  
-            if (publisher) {
-              return (
-                <tr key={publisher.publisher.id}>
-                  <td>
-                    <Link className="custom-link" to={`/publisher/${publisher.publisher.id}`}>
-                      {publisher.publisher.name}
-                    </Link>
-                  </td>
-                  <td>
-                    <a className="custom-link" href={publisher.publisher.website}>
-                      {publisher.publisher.website}
-                    </a>
-                  </td>
-                </tr>
-              );
             } else {
               return (
                 <tr key={publisherId}>
@@ -59,8 +60,13 @@ const Publishers = () => {
                 </tr>
               );
             }
-          })}
-        </tbody>
+          })
+        ) : (
+          <tr>
+            <td colSpan="2">No Publishers Found</td>
+          </tr>
+        )}
+      </tbody>
       </table>
       </div>
     </div>

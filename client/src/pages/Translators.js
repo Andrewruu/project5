@@ -31,36 +31,43 @@ const Translators = () => {
         </tr>
       </thead>
       <tbody>
-        {uniqueTranslators.map((translatorId) => {
+      {uniqueTranslators.length > 0 ? (
+        uniqueTranslators.map((translatorId) => {
           // Find the translator object based on the unique ID
           const translator = user.novels.find(
             (novel) => novel.translator && novel.translator.id === translatorId
           );
 
-          return (
-            <tr key={translatorId}>
-              <td>
-                {translator ? (
+          if (translator) {
+            return (
+              <tr key={translator.translator.id}>
+                <td>
                   <Link className="custom-link" to={`/translator/${translator.translator.id}`}>
                     {translator.translator.name}
                   </Link>
-                ) : (
-                  "No Translator"
-                )}
-              </td>
-              <td>
-                {translator ? (
+                </td>
+                <td>
                   <a className="custom-link" href={translator.translator.website}>
                     {translator.translator.website}
                   </a>
-                ) : (
-                  "-"
-                )}
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
+                </td>
+              </tr>
+            );
+          } else {
+            return (
+              <tr key={translatorId}>
+                <td colSpan="2">No Translator</td>
+              </tr>
+            );
+          }
+        })
+      ) : (
+        <tr>
+          <td colSpan="2">No Translators Found</td>
+        </tr>
+      )}
+    </tbody>
+
     </table>
     </div>
   </div>

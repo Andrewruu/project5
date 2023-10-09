@@ -13,7 +13,7 @@ function SignUp({ onSignup, errors }) {
   });
 
   function handleDisplayNameChange(e) {
-    setUser({ ...user, display_name: e.target.value.toLowerCase() });
+    setUser({ ...user, display_name: e.target.value});
   }
 
   function handleEmailChange(e) {

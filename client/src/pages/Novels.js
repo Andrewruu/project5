@@ -19,7 +19,7 @@ function Novels(){
                 </div>
             </div>
         </div>
-    ): <h1>No Novel</h1>)
+    ): <h1 className="center-container">No Novel</h1>)
 
     return (
         <div class="container-fluid">
