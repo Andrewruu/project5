@@ -42,14 +42,13 @@ function SignUp({ onSignup, errors }) {
           placeholder="Display Name"
           value={user.display_name}
         />
-        <div className="error-messages custom-error-message">
-            {errors.map((error, index) => (
+        {errors.map((error, index) => (
             error.includes("Display name") ?
+            <div className="error-messages custom-error-message">
             <p key={index} className="error">
                 {error}
-            </p> : null
+            </p> </div>: null
             ))}
-        </div>
         <label for="FormControlInput" class="form-label">Email</label>
         <input
           className='form-control'
@@ -76,14 +75,13 @@ function SignUp({ onSignup, errors }) {
           placeholder="Password"
           value={user.password}
         />
-        <div className="error-messages custom-error-message">
-            {errors.map((error, index) => (
+        {errors.map((error, index) => (
             error.includes("Password") ?
+            <div className="error-messages custom-error-message">
             <p key={index} className="error">
                 {error}
-            </p> : null
+            </p> </div>: null
             ))}
-        </div>
         <div className='center-container'>
         <button className='center-container btn btn-outline-success my-2 custom-blue-button' type="submit">Signup</button>
         </div>
