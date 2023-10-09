@@ -46,4 +46,5 @@ $ rails s
 
 - favicon url https://www.iconarchive.com/show/google-play-icons-by-marcus-roberto/Google-Play-Books-icon.html
 - novel info https://www.novelupdates.com 
+- video link for a quick over view of project https://youtu.be/32edXWPMY_A
  
