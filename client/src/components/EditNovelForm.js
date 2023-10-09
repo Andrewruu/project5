@@ -114,72 +114,151 @@ function EditNovelForm({ editNovel, errors }) {
         
 
         return (
-            <div className="NovelEdit">
-            <form className="NovelEdit" onSubmit={handleSubmit}>
+          <div className="mb-3">
+          <div className='container custom-form-size'>
+            <form className="NovelAdd" onSubmit={handleSubmit}>
                 <h1>Edit Novel</h1>
+                <label for="FormControlInput1" class="form-label">Title</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="name"
+                  placeholder="Title"
+                  value={novelData.name}
+                  onChange={handleInputChange}
+                />
+
                 {errors && errors.length > 0 && (
-                <div className="error-messages">
+                <div className="error-messages custom-error-message">
                     {errors.map((error, index) => (
+                    error.includes("Name") ?
                     <p key={index} className="error">
-                        {error}
-                    </p>
+                        {error.replace("Name", "Title")}
+                    </p> : null
                     ))}
                 </div>
                 )}
+
+                <label for="FormControlInput2" class="form-label">Image URL</label>
                 <input
-                type="text"
-                name="name"
-                placeholder="Title"
-                value={novelData.name}
-                onChange={handleInputChange}
-                />
-                <input
-                type="text"
-                name="image"
-                placeholder="Image URL"
-                value={novelData.image}
-                onChange={handleInputChange}
-                />
-                <textarea
-                form="NovelAdd"
-                name="description"
-                placeholder="Description min 15 char"
-                value={novelData.description}
-                onChange={handleInputChange}
+                  class="form-control"
+                  type="text"
+                  name="image"
+                  placeholder="Image URL"
+                  value={novelData.image}
+                  onChange={handleInputChange}
                 />
 
-                <input
-                type="text"
-                name="publisher_attributes.name"
-                placeholder="Publisher Name"
-                value={novelData.publisher_attributes.name}
-                onChange={handleInputChange}
+                 <div className="error-messages custom-error-message">
+                    {errors.map((error, index) => (
+                    error.includes("Image") ?
+                    <p key={index} className="error">
+                        {error}
+                    </p> : null
+                    ))}
+                </div>
+
+                <label for="FormControlInput1" class="form-label">Description</label>
+                <textarea
+                  class="form-control"
+                  form="NovelAdd"
+                  name="description"
+                  placeholder="Description min 15 char"
+                  value={novelData.description}
+                  onChange={handleInputChange}
                 />
+
+                <div className="error-messages custom-error-message">
+                    {errors.map((error, index) => (
+                    error.includes("Description") ?
+                    <p key={index} className="error">
+                        {error}
+                    </p> : null
+                    ))}
+                </div>
+
+                <label for="FormControlInput1" class="form-label">Publisher Name</label>
                 <input
-                type="text"
-                name="publisher_attributes.website"
-                placeholder="Publisher Website"
-                value={novelData.publisher_attributes.website}
-                onChange={handleInputChange}
+                  class="form-control"
+                  type="text"
+                  name="publisher_attributes.name"
+                  placeholder="Publisher Name"
+                  value={novelData.publisher_attributes.name}
+                  onChange={handleInputChange}
                 />
+
+                <div className="error-messages custom-error-message">
+                    {errors.map((error, index) => (
+                    error.includes("Publisher name") ?
+                    <p key={index} className="error">
+                        {error}
+                    </p> : null
+                    ))}
+                </div>
+
+                <label for="FormControlInput1" class="form-label">Publisher Website</label>
                 <input
-                type="text"
-                name="translator_attributes.name"
-                placeholder="Translator Name"
-                value={novelData.translator_attributes.name}
-                onChange={handleInputChange}
+                  class="form-control"
+                  type="text"
+                  name="publisher_attributes.website"
+                  placeholder="Publisher Website"
+                  value={novelData.publisher_attributes.website}
+                  onChange={handleInputChange}
                 />
+
+                <div className="error-messages custom-error-message">
+                    {errors.map((error, index) => (
+                    error.includes("Publisher website") ?
+                    <p key={index} className="error">
+                        {error}
+                    </p> : null
+                    ))}
+                </div>
+
+                <label for="FormControlInput1" class="form-label">Translator Name</label>
                 <input
-                type="text"
-                name="translator_attributes.website"
-                placeholder="Translator Website"
-                value={novelData.translator_attributes.website}
-                onChange={handleInputChange}
+                  class="form-control"
+                  type="text"
+                  name="translator_attributes.name"
+                  placeholder="Translator Name"
+                  value={novelData.translator_attributes.name}
+                  onChange={handleInputChange}
                 />
+
+                <div className="error-messages custom-error-message">
+                    {errors.map((error, index) => (
+                    error.includes("Translator name") ?
+                    <p key={index} className="error">
+                        {error}
+                    </p> : null
+                    ))}
+                </div>
+
+                <label for="FormControlInput1" class="form-label">Translator Website</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="translator_attributes.website"
+                  placeholder="Translator Website"
+                  value={novelData.translator_attributes.website}
+                  onChange={handleInputChange}
+                />
+
+                <div className="error-messages custom-error-message">
+                    {errors.map((error, index) => (
+                    error.includes("Translator website") ?
+                    <p key={index} className="error">
+                        {error}
+                    </p> : null
+                    ))}
+                </div>
+
+                <label for="FormControlInput1" class="form-label">Publisher</label>
                 <select
-                name="publisher_id"
-                value={novelData.publisher_id}
-                onChange={handleInputChange}
+                  class="form-select"
+                  name="publisher_id"
+                  value={novelData.publisher_id}
+                  onChange={handleInputChange}
                 >
                 <option value="">Select a Publisher</option>
                 {publishers.map((publisher) => (
@@ -188,10 +267,12 @@ function EditNovelForm({ editNovel, errors }) {
                     </option>
                 ))}
                 </select>
+                <label for="FormControlInput1" class="form-label">Translator</label>
                 <select
-                name="translator_id"
-                value={novelData.translator_id}
-                onChange={handleInputChange}
+                  class="form-select"
+                  name="translator_id"
+                  value={novelData.translator_id}
+                  onChange={handleInputChange}
                 >
                 <option value="">Select a Translator</option>
                 {translators.map((translator) => (
@@ -201,9 +282,10 @@ function EditNovelForm({ editNovel, errors }) {
                 ))}
                 </select>
 
-                <button type="submit">Edit Novel</button>
+                <button className="btn btn-outline-success my-2 custom-blue-button" type="submit">Edit Novel</button>
             </form>
-            </div>
+          </div>
+        </div>
   );
 }
 

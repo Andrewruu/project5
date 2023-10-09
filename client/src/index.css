@@ -40,7 +40,12 @@ body {
   flex-direction: column;
   text-align: center;
 }
-
+.custom-form-size{
+  width: 50%;
+}
+.custom-loginform-size{
+  width: 25%;
+}
 .center-container p {
   margin: 10px 0;
 }
@@ -77,6 +82,11 @@ body {
   color: rgb(90, 153, 247); 
 }
 
+/* error message */
+.custom-error-message{
+  color: red;
+  background-color: mistyrose;
+}
 /* btn cust CSS */
 
 .custom-blue-button {

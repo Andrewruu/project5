@@ -15,14 +15,14 @@ function Access() {
   }
 
   return (
-    <div className="login-signup-card">
+    <div className="login-signup-card container custom-loginform-size">
       {showLogin ? (
         <>
           <Login onLogin={login} />
           <div />
-          <p>
+          <p className='center-container'>
             Don't have an account? &nbsp;
-            <button color="secondary" onClick={() => handleClick(false)}>
+            <button className='btn btn-outline-success my-2 custom-blue-button' color="secondary" onClick={() => handleClick(false)}>
               Sign Up
             </button>
           </p>
@@ -31,9 +31,9 @@ function Access() {
         <>
           <SignUp onSignup={signup} />
           <div />
-          <p>
+          <p className='center-container'>
             Already have an account? &nbsp;
-            <button color="secondary" onClick={() => handleClick(true)}>
+            <button className='btn btn-outline-success my-2 custom-blue-button' color="secondary" onClick={() => handleClick(true)}>
               Log In
             </button>
           </p>

@@ -22,17 +22,20 @@ function Login({ onLogin, errors }) {
   }
 
   return (
-    <div className="login-container">
+    <div className="login-container ">
       <form onSubmit={handleSubmit} className="login-form">
-        <h1>Welcome!</h1>
-        <h2>Login to Your App</h2>
+        <h1>Login to Novel Shelf</h1>
+        <label for="FormControlInput" class="form-label">Email</label>
         <input
+          className='form-control'
           type="text"
           onChange={handleEmailChange}
           placeholder="Email"
           value={email}
         />
+        <label for="FormControlInput" class="form-label">Password</label>
         <input
+          className='form-control'
           type="password"
           onChange={handlePasswordChange}
           placeholder="Password"
@@ -47,7 +50,7 @@ function Login({ onLogin, errors }) {
             ))}
           </div>
         )}
-        <button type="submit">Login</button>
+        <button className='center-container btn btn-outline-success my-2 custom-blue-button' type="submit">Login</button>
       </form>
     </div>
   );
