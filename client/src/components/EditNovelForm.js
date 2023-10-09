@@ -128,18 +128,16 @@ function EditNovelForm({ editNovel, errors }) {
                   onChange={handleInputChange}
                 />
 
-                {errors && errors.length > 0 && (
-                <div className="error-messages custom-error-message">
-                    {errors.map((error, index) => (
-                    error.includes("Name") ?
-                    <p key={index} className="error">
-                        {error.replace("Name", "Title")}
-                    </p> : null
-                    ))}
-                </div>
-                )}
+                {errors.map((error, index) => (
+                  error.includes("Name") ?
+                  <div className="error-messages custom-error-message">
+                  <p key={index} className="error">
+                      {error.replace("Name", "Title")}
+                  </p> </div>: null
+                ))}
+                
 
-                <label for="FormControlInput2" class="form-label">Image URL</label>
+                <label for="FormControlInput1" class="form-label">Image URL</label>
                 <input
                   class="form-control"
                   type="text"
@@ -149,14 +147,14 @@ function EditNovelForm({ editNovel, errors }) {
                   onChange={handleInputChange}
                 />
 
-                 <div className="error-messages custom-error-message">
-                    {errors.map((error, index) => (
-                    error.includes("Image") ?
-                    <p key={index} className="error">
-                        {error}
-                    </p> : null
-                    ))}
-                </div>
+                {errors.map((error, index) => (
+                  error.includes("Image") ?
+                  <div className="error-messages custom-error-message">
+                  <p key={index} className="error">
+                      {error}
+                  </p> </div>: null
+                ))}
+                
 
                 <label for="FormControlInput1" class="form-label">Description</label>
                 <textarea
@@ -168,14 +166,15 @@ function EditNovelForm({ editNovel, errors }) {
                   onChange={handleInputChange}
                 />
 
-                <div className="error-messages custom-error-message">
-                    {errors.map((error, index) => (
-                    error.includes("Description") ?
-                    <p key={index} className="error">
-                        {error}
-                    </p> : null
-                    ))}
-                </div>
+                
+                {errors.map((error, index) => (
+                  error.includes("Description") ?
+                  <div className="error-messages custom-error-message">
+                  <p key={index} className="error">
+                      {error}
+                  </p> </div>: null
+                ))}
+                
 
                 <label for="FormControlInput1" class="form-label">Publisher Name</label>
                 <input
@@ -187,14 +186,13 @@ function EditNovelForm({ editNovel, errors }) {
                   onChange={handleInputChange}
                 />
 
-                <div className="error-messages custom-error-message">
-                    {errors.map((error, index) => (
-                    error.includes("Publisher name") ?
-                    <p key={index} className="error">
-                        {error}
-                    </p> : null
-                    ))}
-                </div>
+                {errors.map((error, index) => (
+                  error.includes("Publisher name") ?
+                  <div className="error-messages custom-error-message">
+                  <p key={index} className="error">
+                      {error}
+                  </p> </div>: null
+                ))}
 
                 <label for="FormControlInput1" class="form-label">Publisher Website</label>
                 <input
@@ -206,14 +204,13 @@ function EditNovelForm({ editNovel, errors }) {
                   onChange={handleInputChange}
                 />
 
-                <div className="error-messages custom-error-message">
-                    {errors.map((error, index) => (
-                    error.includes("Publisher website") ?
-                    <p key={index} className="error">
-                        {error}
-                    </p> : null
-                    ))}
-                </div>
+                {errors.map((error, index) => (
+                  error.includes("Publisher website") ?
+                  <div className="error-messages custom-error-message">
+                  <p key={index} className="error">
+                      {error}
+                  </p> </div>: null
+                ))}
 
                 <label for="FormControlInput1" class="form-label">Translator Name</label>
                 <input
@@ -225,14 +222,13 @@ function EditNovelForm({ editNovel, errors }) {
                   onChange={handleInputChange}
                 />
 
-                <div className="error-messages custom-error-message">
-                    {errors.map((error, index) => (
-                    error.includes("Translator name") ?
-                    <p key={index} className="error">
-                        {error}
-                    </p> : null
-                    ))}
-                </div>
+                {errors.map((error, index) => (
+                  error.includes("Translator name") ?
+                  <div className="error-messages custom-error-message">
+                  <p key={index} className="error">
+                      {error}
+                  </p> </div>: null
+                ))} 
 
                 <label for="FormControlInput1" class="form-label">Translator Website</label>
                 <input
@@ -244,14 +240,13 @@ function EditNovelForm({ editNovel, errors }) {
                   onChange={handleInputChange}
                 />
 
-                <div className="error-messages custom-error-message">
-                    {errors.map((error, index) => (
-                    error.includes("Translator website") ?
-                    <p key={index} className="error">
-                        {error}
-                    </p> : null
-                    ))}
-                </div>
+                {errors.map((error, index) => (
+                  error.includes("Translator website") ?
+                  <div className="error-messages custom-error-message">
+                  <p key={index} className="error">
+                      {error}
+                  </p> </div>: null
+                ))} 
 
                 <label for="FormControlInput1" class="form-label">Publisher</label>
                 <select

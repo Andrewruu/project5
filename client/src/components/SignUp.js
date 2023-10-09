@@ -33,15 +33,23 @@ function SignUp({ onSignup, errors }) {
   return (
     <div className="signup-container">
       <form onSubmit={handleSubmit} className="signup-form">
-        <h1>Register</h1>
+        <h1 className='center-container'>Register</h1>
         <label for="FormControlInput" class="form-label">Display Name</label>
         <input
           className='form-control'
           type="text"
           onChange={handleDisplayNameChange}
           placeholder="Display Name"
-          value={user.displayName}
+          value={user.display_name}
         />
+        <div className="error-messages custom-error-message">
+            {errors.map((error, index) => (
+            error.includes("Display name") ?
+            <p key={index} className="error">
+                {error}
+            </p> : null
+            ))}
+        </div>
         <label for="FormControlInput" class="form-label">Email</label>
         <input
           className='form-control'
@@ -50,6 +58,15 @@ function SignUp({ onSignup, errors }) {
           placeholder="Email"
           value={user.email}
         />
+        
+            {errors.map((error, index) => (
+            error.includes("Email") ?
+            <div className="error-messages custom-error-message">
+            <p key={index} className="error">
+                {error}
+            </p> </div>: null
+            ))}
+        
         <label for="FormControlInput" class="form-label">Password</label>
         <input
           className='form-control'
@@ -59,16 +76,17 @@ function SignUp({ onSignup, errors }) {
           placeholder="Password"
           value={user.password}
         />
-        {errors && errors.length > 0 && (
-          <div className="signup-errors">
+        <div className="error-messages custom-error-message">
             {errors.map((error, index) => (
-              <p key={index} className="signup-error">
+            error.includes("Password") ?
+            <p key={index} className="error">
                 {error}
-              </p>
+            </p> : null
             ))}
-          </div>
-        )}
+        </div>
+        <div className='center-container'>
         <button className='center-container btn btn-outline-success my-2 custom-blue-button' type="submit">Signup</button>
+        </div>
       </form>
     </div>
   );

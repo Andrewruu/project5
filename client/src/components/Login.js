@@ -24,7 +24,7 @@ function Login({ onLogin, errors }) {
   return (
     <div className="login-container ">
       <form onSubmit={handleSubmit} className="login-form">
-        <h1>Login to Novel Shelf</h1>
+        <h1 className='center-container'>Login to Novel Shelf</h1>
         <label for="FormControlInput" class="form-label">Email</label>
         <input
           className='form-control'
@@ -42,7 +42,7 @@ function Login({ onLogin, errors }) {
           value={password}
         />
         {errors && errors.length > 0 && (
-          <div className="login-errors">
+          <div className="login-errors error-messages custom-error-message">
             {errors.map((error, index) => (
               <p key={index} className="login-error">
                 {error}
@@ -50,7 +50,9 @@ function Login({ onLogin, errors }) {
             ))}
           </div>
         )}
-        <button className='center-container btn btn-outline-success my-2 custom-blue-button' type="submit">Login</button>
+        <div className='center-container'>
+        <button className='btn btn-outline-success my-2 custom-blue-button ' type="submit">Login</button>
+        </div>
       </form>
     </div>
   );
